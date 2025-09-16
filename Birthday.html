@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday My Love</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -11,70 +12,85 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-      overflow: hidden;
       font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      background: linear-gradient(270deg, #ffdde1, #ee9ca7, #ff9a9e, #fad0c4);
+      background-size: 800% 800%;
+      animation: bgGlow 12s ease infinite;
     }
+
+    @keyframes bgGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 0 15px rgba(255,255,255,0.9);
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      from { transform: translateY(100vh) scale(0.5); opacity: 1; }
+      to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    /* Gift box */
     .gift {
-      width: 150px;
-      height: 150px;
+      width: 35vw;
+      height: 35vw;
+      max-width: 180px;
+      max-height: 180px;
       background: pink;
       position: relative;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 5px 25px rgba(255,0,100,0.6);
       border-radius: 10px;
       animation: bounce 1s infinite;
       transition: transform 0.6s ease, opacity 0.6s ease;
+      z-index: 20;
     }
-    .gift.opened {
-      transform: scale(1.3) rotate(10deg);
-      opacity: 0;
-    }
+    .gift.opened { transform: scale(1.3) rotate(10deg); opacity: 0; }
     .gift::before, .gift::after {
       content: '';
       position: absolute;
       background: red;
     }
-    .gift::before {
-      width: 30px;
-      height: 150px;
-      left: 60px;
-    }
-    .gift::after {
-      height: 30px;
-      width: 150px;
-      top: 60px;
-    }
+    .gift::before { width: 20%; height: 100%; left: 40%; }
+    .gift::after { height: 20%; width: 100%; top: 40%; }
     .lid {
-      width: 170px;
-      height: 40px;
+      width: 110%;
+      height: 25%;
       background: pink;
       position: absolute;
-      top: -40px;
-      left: -10px;
+      top: -25%;
+      left: -5%;
       border-radius: 5px 5px 0 0;
+      box-shadow: 0 0 15px rgba(255,100,150,0.8);
     }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-15px); }
     }
-    .hearts, .quiz, .bear {
-      display: none;
-      text-align: center;
-      z-index: 10;
-    }
+
+    /* Hearts & Quiz */
+    .hearts, .quiz, .envelope { display: none; text-align: center; z-index: 10; }
     .instruction {
       color: #fff;
       font-weight: 600;
-      margin-bottom: 200px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      margin-bottom: 100px;
+      text-shadow: 0 0 10px rgba(255,0,100,0.8);
+      font-size: clamp(22px, 6vw, 40px);
     }
     .heart {
-      font-size: 30px;
+      font-size: 14vw;
       color: red;
       position: absolute;
       cursor: pointer;
       animation: float 6s linear infinite;
+      text-shadow: 0 0 15px rgba(255,0,0,0.8);
     }
     @keyframes float {
       from { transform: translateY(100vh); }
@@ -82,98 +98,107 @@
     }
     .quiz {
       background: rgba(255, 182, 193, 0.95);
-      padding: 20px;
+      padding: 15px;
       border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 0 20px rgba(255,100,150,0.8);
       color: #333;
+      max-width: 90vw;
+      margin: auto;
     }
-    input {
+    input, button {
       padding: 8px;
-      border: none;
-      border-radius: 5px;
       margin-top: 5px;
-      text-align: center;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
       width: 80%;
-      font-family: inherit;
     }
     button {
-      padding: 8px 15px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 10px;
       background: #ff69b4;
-      color: white;
+      color: #fff;
       cursor: pointer;
-      font-family: inherit;
+      margin-top: 10px;
     }
-    /* Bear */
-    .bear {
+
+    /* Envelope card */
+    .envelope {
+      width: 90vw;
+      max-width: 340px;
+      height: 220px;
       position: relative;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      margin-bottom: -50px;
-    }
-    .bear .ear {
-      width: 60px;
-      height: 60px;
-      background: #d89f7b;
-      border-radius: 50%;
-      position: absolute;
-      top: -30px;
-    }
-    .bear .ear.left { left: -70px; }
-    .bear .ear.right { right: -70px; }
-    .bear .head {
-      width: 150px;
-      height: 150px;
-      background: #d89f7b;
-      border-radius: 50%;
-      position: relative;
-      z-index: 5;
-    }
-    .bear .eye {
-      width: 20px;
-      height: 20px;
-      background: black;
-      border-radius: 50%;
-      position: absolute;
-      top: 50px;
-    }
-    .bear .eye.left { left: 35px; }
-    .bear .eye.right { right: 35px; }
-    .bear .snout {
-      width: 60px;
-      height: 50px;
-      background: #f5e0c8;
-      border-radius: 50%;
-      position: absolute;
-      bottom: 35px;
-      left: 45px;
-    }
-    .bear .nose {
-      width: 20px;
-      height: 15px;
-      background: black;
-      border-radius: 50%;
-      position: absolute;
-      top: 10px;
-      left: 20px;
-    }
-    .message-card {
-      max-width: 600px;
       margin: auto;
-      background: #fff0f5;
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      text-align: center;
-      font-size: 20px;
-      color: #333;
+      perspective: 1000px;
       z-index: 20;
-      position: relative;
-      margin-top: -30px;
     }
+    .envelope .back, .envelope .front {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #fff0f5;
+      border: 2px solid #e0aaff;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .envelope .front {
+      z-index: 2;
+      transform-origin: top;
+      transform: rotateX(0deg);
+      transition: transform 1s ease;
+    }
+    .envelope.open .front {
+      transform: rotateX(-180deg);
+    }
+    .seal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 32px;
+      color: red;
+      z-index: 3;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .envelope.open .seal {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    .letter {
+      position: absolute;
+      top: 20px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+      text-align: center;
+      font-size: clamp(14px, 4vw, 18px);
+      color: #333;
+      overflow-y: auto;
+      opacity: 0;
+      transition: opacity 1s ease 1s;
+    }
+    .envelope.open .letter { opacity: 1; }
+    .scroll-indicator {
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: #ff4d88;
+      font-family: 'Poppins', sans-serif;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      animation: bounceSide 1s infinite alternate;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+    @keyframes bounceSide {
+      from { transform: translateY(-50%) translateX(0); }
+      to { transform: translateY(-50%) translateX(5px); }
+    }
+
+    /* Floating hearts background */
     .floating-heart {
       position: absolute;
       font-size: 20px;
@@ -184,6 +209,45 @@
     @keyframes drift {
       from { transform: translateY(100vh) translateX(0); }
       to { transform: translateY(-10vh) translateX(30px); }
+    }
+
+    /* Appreciation buttons */
+    .appreciate-btns {
+      margin-top: 15px;
+    }
+    .appreciate-btns button {
+      background: #ff4d88;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      margin: 6px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .appreciate-btns button:hover {
+      background: #ff1a66;
+    }
+
+    /* Kisses screen */
+    .kisses {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: pink;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .kiss {
+      position: absolute;
+      font-size: 30px;
+      animation: fall 3s linear infinite;
+    }
+    @keyframes fall {
+      from { transform: translateY(-10vh); }
+      to { transform: translateY(110vh); }
     }
   </style>
 </head>
@@ -209,17 +273,14 @@
     <p id="hint"></p>
   </div>
 
-  <div class="bear" id="bear">
-    <div class="ear left"></div>
-    <div class="ear right"></div>
-    <div class="head">
-      <div class="eye left"></div>
-      <div class="eye right"></div>
-      <div class="snout">
-        <div class="nose"></div>
-      </div>
+  <!-- Envelope message -->
+  <div class="envelope" id="envelope">
+    <div class="back"></div>
+    <div class="front"></div>
+    <div class="seal">❤️</div>
+    <div class="letter" id="message">
+      <div class="scroll-indicator">Scroll ↓</div>
     </div>
-    <div class="message-card" id="message"></div>
   </div>
 
   <audio id="bg-music" loop>
@@ -227,18 +288,31 @@
   </audio>
 
   <script>
+    // Floating glowing particles
+    for (let i = 0; i < 30; i++) {
+      let particle = document.createElement("div");
+      particle.classList.add("particle");
+      let size = Math.random() * 10 + 5;
+      particle.style.width = size + "px";
+      particle.style.height = size + "px";
+      particle.style.left = Math.random() * 100 + "vw";
+      particle.style.animationDuration = (Math.random() * 6 + 4) + "s";
+      document.body.appendChild(particle);
+    }
+
     const gift = document.getElementById('gift');
     const heartsDiv = document.getElementById('hearts');
     const quiz = document.getElementById('quiz');
-    const bear = document.getElementById('bear');
+    const envelope = document.getElementById('envelope');
     const messageDiv = document.getElementById('message');
     const hint = document.getElementById('hint');
     const music = document.getElementById('bg-music');
     let heartsClicked = 0;
 
-    // Open gift box
+    // Gift click
     gift.addEventListener('click', () => {
       gift.classList.add('opened');
+      music.play().catch(()=>{});
       setTimeout(() => {
         gift.style.display = 'none';
         heartsDiv.style.display = 'block';
@@ -254,6 +328,7 @@
             if (heartsClicked === 3) {
               heartsDiv.style.display = 'none';
               quiz.style.display = 'block';
+              if (music.paused) music.play();
             }
           });
           heartsDiv.appendChild(heart);
@@ -261,7 +336,7 @@
       }, 700);
     });
 
-    // Check answers with flexibility
+    // Check answers
     function checkAnswers() {
       let a1 = document.getElementById('q1').value.trim().toLowerCase();
       let a2 = document.getElementById('q2').value.trim().toLowerCase();
@@ -271,6 +346,7 @@
 
       if (validDates.includes(a1) && a2 === "black" && a3 === "baby") {
         quiz.style.display = 'none';
+        if (music.paused) music.play();
         startMessage();
       } else {
         hint.innerText = "Hmm, think again baby 😘";
@@ -279,7 +355,7 @@
 
     // Show message
     function startMessage() {
-      // Floating hearts background
+      // Floating hearts
       for (let i = 0; i < 30; i++) {
         let el = document.createElement('div');
         el.classList.add('floating-heart');
@@ -289,24 +365,53 @@
         document.body.appendChild(el);
       }
 
-      // Music
-      music.play();
-
-      // Show bear and card
-      bear.style.display = 'flex';
+      // Show envelope
+      envelope.style.display = 'block';
+      setTimeout(() => { envelope.classList.add('open'); }, 1000);
 
       // Typewriter effect
-      messageDiv.innerHTML = "";
-      let msg = "Happy Birthday, Baby! 🎉❤️ I’m so blessed we first talked on Jan 20, 2025. You are my everything, my forever, my only love. I love you endlessly and I can’t wait to spend more birthdays with you. 💕 Happy Birthday, Baby! 🎉❤️ I’m so blessed we first talked on Jan 20, 2025. You are my everything, my forever, my only love. I love you endlessly and I can’t wait to spend more birthdays with you. 💕 ";
+      let msg = "Happy Birthday, Baby! 🎉❤️ I’m so blessed we first talked on Jan 20, 2025. You are my everything, my forever, my only love. I love you endlessly and I can’t wait to spend more birthdays with you. Happy Birthday, Baby! 🎉❤️ I’m so blessed we first talked on Jan 20, 2025. You are my everything, my forever, my only love. I love you endlessly and I can’t wait to spend more birthdays with you💕";
       let i = 0;
+      messageDiv.innerHTML = '<div class="scroll-indicator">Scroll ↓</div>';
       function typeWriter(){
-        if(i<msg.length){
+        if(i < msg.length){
           messageDiv.innerHTML += msg.charAt(i);
           i++;
           setTimeout(typeWriter, 60);
+        } else {
+          // After finished typing, show buttons
+          const btns = document.createElement("div");
+          btns.classList.add("appreciate-btns");
+          btns.innerHTML = `
+            <button id="yesBtn">Yes I appreciate it 💖</button>
+            <button id="noBtn">No 😅</button>
+          `;
+          messageDiv.appendChild(btns);
+
+          const yesBtn = document.getElementById("yesBtn");
+          const noBtn = document.getElementById("noBtn");
+
+          yesBtn.addEventListener("click", () => {
+            document.body.innerHTML = "<div class='kisses'></div>";
+            for (let k = 0; k < 100; k++) {
+              let kiss = document.createElement("div");
+              kiss.innerHTML = "💋";
+              kiss.classList.add("kiss");
+              kiss.style.left = Math.random() * 100 + "vw";
+              kiss.style.top = Math.random() * 100 + "vh";
+              kiss.style.animationDelay = Math.random() * 2 + "s";
+              document.querySelector(".kisses").appendChild(kiss);
+            }
+          });
+
+          noBtn.addEventListener("mouseover", () => {
+            noBtn.style.position = "absolute";
+            noBtn.style.left = Math.random() * 80 + "vw";
+            noBtn.style.top = Math.random() * 80 + "vh";
+          });
         }
       }
-      typeWriter();
+      setTimeout(typeWriter, 2000);
     }
   </script>
 </body>
